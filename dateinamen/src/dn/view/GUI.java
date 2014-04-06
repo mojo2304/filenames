@@ -12,8 +12,9 @@ import dn.controller.Controller;
 
 public class GUI extends JFrame {
 
-	JPanel panel;
-	JPanel panel_1;
+	JPanel panelModify;
+	JPanel panelCompare;
+	JPanel panelSettings;
 	
 	Controller _controllerInstance;
 	
@@ -41,42 +42,56 @@ public class GUI extends JFrame {
 		
 		getLayeredPane().setLayout(null);
 		
-		panel = new JPanel();
-		panel.setBounds(0, 0, 434, 241);
-		getLayeredPane().add(panel, 0);
-		
+		panelModify = new JPanel();
+		panelModify.setBounds(0, 21, 434, 241);
+		getLayeredPane().add(panelModify, 1);
 		JLabel lblModify = new JLabel("Modify");
-		panel.add(lblModify);
+		panelModify.add(lblModify);
 		
-		panel_1 = new JPanel();
-		panel_1.setBounds(0, 0, 434, 241);
-		getLayeredPane().add(panel_1, 1);
-		
+		panelCompare = new JPanel();
+		panelCompare.setBounds(0, 21, 434, 241);
+		getLayeredPane().add(panelCompare, 2);
 		JLabel lblVergleich = new JLabel("Vergleichen");
-		panel_1.add(lblVergleich);
+		panelCompare.add(lblVergleich);
+		
+		panelSettings = new JPanel();
+		panelSettings.setBounds(0, 21, 434, 241);
+		getLayeredPane().add(panelSettings, 3);
+		JLabel lblSettings = new JLabel("Settings");
+		panelSettings.add(lblSettings);
+
+		getLayeredPane().add(createMenuBar(434, 21));
 		
 		// CONTENT PANE
-		
+
+		getContentPane().setLayout(null);
+	}
+	
+	private JMenuBar createMenuBar(int width, int height) {
 		JMenuBar menuBar = new JMenuBar();
-		menuBar.setBounds(0, 0, 434, 21);
-		getLayeredPane().add(menuBar);
+		menuBar.setBounds(0, 0, width, height);
 		
 		JMenu mnProgramm = new JMenu("Programm");
 		menuBar.add(mnProgramm);
 		
 		JMenuItem mntmVergleichen = new JMenuItem("Vergleichen");
-		mntmVergleichen.addActionListener(new SwitchContentListener(panel_1));
+		mntmVergleichen.addActionListener(new SwitchContentListener(getLayeredPane(), panelCompare));
 		mnProgramm.add(mntmVergleichen);
 		
 		JMenuItem mntmNamenModifizieren = new JMenuItem("Namen modifizieren");
-		mntmNamenModifizieren.addActionListener(new SwitchContentListener(panel));
+		mntmNamenModifizieren.addActionListener(new SwitchContentListener(getLayeredPane(), panelModify));
 		mnProgramm.add(mntmNamenModifizieren);
+		
+		mnProgramm.addSeparator();
+		
+		JMenuItem mntmSettings = new JMenuItem("Einstellungen");
+		mntmSettings.addActionListener(new SwitchContentListener(getLayeredPane(), panelSettings));
+		mnProgramm.add(mntmSettings);
 		
 		mnProgramm.addSeparator();
 		
 		JMenuItem mntmSchliessen = new JMenuItem("Exit");
 		mntmSchliessen.addActionListener(new CloseListener());
-		
 		mnProgramm.add(mntmSchliessen);
 		
 		JMenu menu = new JMenu("?");
@@ -85,6 +100,6 @@ public class GUI extends JFrame {
 		JMenuItem mntmVersion = new JMenuItem("Version");
 		menu.add(mntmVersion);
 		
-		getContentPane().setLayout(null);
+		return menuBar;
 	}
 }

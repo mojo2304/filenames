@@ -1,32 +1,24 @@
 package dn.view;
 
-import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JFrame;
+import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
 
 public class SwitchContentListener implements ActionListener {
 
+	JLayeredPane _layeredPane;
 	JPanel _panel;
 	
-	public SwitchContentListener(JPanel panel) {
+	public SwitchContentListener(JLayeredPane layeredPane, JPanel panel) {
+		_layeredPane = layeredPane;
 		_panel = panel;
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(_panel);
-		Component[] com =  frame.getComponents();
-		JPanel[] panels = (JPanel[]) com;
-		
-		for (JPanel p : panels) {
-			p.setEnabled(false);
-		}
-		
-		_panel.setVisible(true);
+		_layeredPane.moveToFront(_panel);
 	}
 
 }
