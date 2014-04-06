@@ -1,6 +1,4 @@
-package view;
-
-import java.awt.EventQueue;
+package dn.view;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -10,33 +8,23 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
+import dn.controller.Controller;
+
 public class GUI extends JFrame {
 
 	JPanel panel;
 	JPanel panel_1;
 	
+	Controller _controllerInstance;
+	
 	private static final long serialVersionUID = 1L;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					GUI frame = new GUI();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
 	 */
-	public GUI() {
+	public GUI(Controller controllerInstance) {
+		
+		_controllerInstance = controllerInstance;
 		
 		// ALLGEMEINES (JFRAME)
 		
