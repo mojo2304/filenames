@@ -1,13 +1,12 @@
 package dn.view.panels;
 
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import dn.view.MainGUIConstants;
-import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JCheckBox;
 import dn.view.comboboxes.Languages;
 
 public class Settings extends JPanel {
@@ -28,8 +27,8 @@ public class Settings extends JPanel {
 		lblSprache.setBounds(10, 11, 110, 14);
 		add(lblSprache);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(Languages.values()));
+		JComboBox<Languages> comboBox = new JComboBox<Languages>();
+		comboBox.setModel(new DefaultComboBoxModel<Languages>(Languages.values()));
 		comboBox.setBounds(130, 8, 80, 20);
 		add(comboBox);
 		

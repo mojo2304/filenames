@@ -3,6 +3,7 @@ package dn.controller;
 import java.awt.EventQueue;
 import java.io.File;
 
+import dn.model.DirectoryTree;
 import dn.view.MainGUI;
 
 public class Controller {
@@ -10,13 +11,14 @@ public class Controller {
 	public Controller() {
 	}
 	
-	public int getFiles(String path) {
-		File file = new File(path);
+	public static DirectoryTree getDirectoryTree(String path, int recursiveDepth) {
+		File begin = new File(path);
 		
-		for (File f : file.listFiles(new MyFilenameFilter()))
-			  System.out.println(f);
+		DirectoryTree tree = new DirectoryTree(begin);
+		tree.buildDirectoryTree(recursiveDepth);
+		tree.printDirectoryTree();
 		
-		return 0;
+		return tree;
 	}
 	
 	/**
@@ -34,8 +36,6 @@ public class Controller {
 					e.printStackTrace();
 					System.out.print("GUI konnte nicht gestartet werden.");
 				}
-				
-				c.getFiles(System.getProperty("user.dir"));
 			}
 		});
 	}

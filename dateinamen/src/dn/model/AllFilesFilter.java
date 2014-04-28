@@ -1,11 +1,11 @@
-package dn.controller;
+package dn.model;
 
 import java.io.File;
 import java.io.FilenameFilter;
 
-public class MyFilenameFilter implements FilenameFilter {
+public class AllFilesFilter implements FilenameFilter {
 
-	public MyFilenameFilter() {
+	public AllFilesFilter() {
 	}
 	
 	@Override
