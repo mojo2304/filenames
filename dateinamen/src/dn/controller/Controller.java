@@ -1,13 +1,22 @@
 package dn.controller;
 
 import java.awt.EventQueue;
+import java.io.File;
 
-import dn.view.GUI;
+import dn.view.MainGUI;
 
 public class Controller {
 	
 	public Controller() {
+	}
+	
+	public int getFiles(String path) {
+		File file = new File(path);
 		
+		for (File f : file.listFiles(new MyFilenameFilter()))
+			  System.out.println(f);
+		
+		return 0;
 	}
 	
 	/**
@@ -19,11 +28,14 @@ public class Controller {
 				Controller c = new Controller();
 				
 				try {
-					GUI frame = new GUI(c);
+					MainGUI frame = new MainGUI(c);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
+					System.out.print("GUI konnte nicht gestartet werden.");
 				}
+				
+				c.getFiles(System.getProperty("user.dir"));
 			}
 		});
 	}
